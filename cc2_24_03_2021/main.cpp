@@ -16,7 +16,6 @@ int main(){
     cout<<"\n"<<q+2;
     cout<<"\n"<<*(q+2);
     cout<<"\n"<<&(*(q+2));
-    cout<<"\n"<<"porque el profesor escribia printf()";
     
     return 0;
 }
