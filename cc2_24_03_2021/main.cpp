@@ -12,6 +12,7 @@ int main(){
     //int &c{a};
     int *&q = p;
     *q = 7;
+    a++;
     cout<<"\n"<<c;
     cout<<"\n"<<q+2;
     cout<<"\n"<<*(q+2);
