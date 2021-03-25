@@ -16,6 +16,7 @@ int main(){
     cout<<"\n"<<q+2;
     cout<<"\n"<<*(q+2);
     cout<<"\n"<<&(*(q+2));
+    cout<<"\n"<<c;
     
     return 0;
 }
