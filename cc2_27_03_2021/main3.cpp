@@ -24,5 +24,13 @@ int main(){
     int *p2 = A+3;
     cout<<p2 -p0; // 2(int) 8 bit
 
+    //ejercicios
+
+    int x = 5 ;//200
+    int *p = &x;
+    //int *&q=x; // error // 
+    int *&q=p;
+    cout<<"\n"<<*q;//5
+    cout<<"\n"<<&*(q+1);// 204
     return 0;
 }
