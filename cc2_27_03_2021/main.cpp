@@ -19,6 +19,9 @@ int main(){
     *p=6;
     int **pp = &p ;//puntero que apunta a otro puntero
     cout<<*(*pp);
-
+    int *** ppp = &pp;
+    cout<<"\n"<<*(&pp);// el contenido de ( lo que apunta = p )
+    cout<<"\n"<<&p; // su direciion de memoria
+    cout<<"\n"<<&x;
     return 0;
 }
