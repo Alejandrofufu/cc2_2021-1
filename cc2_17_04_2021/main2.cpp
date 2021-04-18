@@ -27,9 +27,9 @@ void multiplicacion(int *matris1,int sizeIa,int sizeJa,int *matris2,int sizeIb,i
             int suma =0;
             for(int j=0;j<sizeJa;j++){
                 suma+=(*m1b)*(*m2b);m1b++;
-                for(int i=0;i<sizeJa;i++){m2b++;}
+                for(int i=0;i<sizeJb;i++){m2b++;}
             }*m3=suma;m3++;m1b = m1;m2++;m2b = m2;suma=0;
-        }for(int i=0;i<sizeJa;i++){m1++;}m2=matris2;
+        }for(int i=0;i<sizeJa;i++){m1++;}m2=matris2;m2b=m2;m1b=m1;
     }
 
 }
