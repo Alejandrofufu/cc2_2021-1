@@ -3,7 +3,12 @@
 #include<ctime>
 using namespace std;
 //multiplicacion de matriz l
-
+void variables(int &ai,int &aj,int &bi,int &bj){
+    cout<<"ingrese el numero de filas de matris1: ";cin>>ai;
+    cout<<"ingrese el numero de columnas de matris1: ";cin>>aj;
+    cout<<"\ningrese el numero de filas de matris2: ";cin>>bi;
+    cout<<"ingrese el numero de columnas de matris2: ";cin>>bj;
+}
 void numrand(int *arr,int sizeI,int sizeJ){
     int *pt = arr;
     for(int i = 0;i<sizeI*sizeJ;i++){
@@ -35,18 +40,26 @@ void multiplicacion(int *matris1,int sizeIa,int sizeJa,int *matris2,int sizeIb,i
 }
 
 int main(){
-    int a[12];//[4][3]
-    int b[6];//[3][2]
-    int c[8]; //[4][2]
-    srand(time(NULL));
-    numrand(a,4,3);
-    imprArr(a,4,3);
-    numrand(b,3,2);
-    imprArr(b,3,2);
-    //multi
-    multiplicacion(a,4,3,b,3,2,c);
-    cout<<"multiplicacion: \n";
-    imprArr(c,4,2);
+    int ai,aj,bi,bj;
+    variables(ai,aj,bi,bj);
+    if(aj!=bi){
+        cout<<"\t\t---error---\n";
+        cout<<"\tNo se puede multiplicar esas matrices !!!";
+    }
+    else{
+        int a[ai*aj];//[4][3]
+        int b[bi*bj];//[3][2]
+        int c[ai*bj]; //[4][2]
+        srand(time(NULL));
+        numrand(a,ai,aj);
+        imprArr(a,ai,aj);
+        numrand(b,bi,bj);
+        imprArr(b,bi,bj);
+        //multi
+        multiplicacion(a,ai,aj,b,bi,bj,c);
+        cout<<"multiplicacion: \n";
+        imprArr(c,ai,bj);
+    }
 
     return 0 ;
 }
