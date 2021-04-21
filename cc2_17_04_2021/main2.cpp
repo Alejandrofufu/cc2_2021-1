@@ -59,7 +59,9 @@ int main(){
         multiplicacion(a,ai,aj,b,bi,bj,c);
         cout<<"multiplicacion: \n";
         imprArr(c,ai,bj);
-        delete a,b,c;
+        delete[] a;
+        delete[] b;
+        delete[] c;
     }
 
     return 0 ;
