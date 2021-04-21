@@ -47,9 +47,9 @@ int main(){
         cout<<"\tNo se puede multiplicar esas matrices !!!";
     }
     else{
-        int a[ai*aj];//[4][3]
-        int b[bi*bj];//[3][2]
-        int c[ai*bj]; //[4][2]
+        int *a = new int [ai*aj];//[4][3]
+        int *b = new int [bi*bj];//[3][2]
+        int *c = new int [ai*bj]; //[4][2]
         srand(time(NULL));
         numrand(a,ai,aj);
         imprArr(a,ai,aj);
@@ -59,6 +59,7 @@ int main(){
         multiplicacion(a,ai,aj,b,bi,bj,c);
         cout<<"multiplicacion: \n";
         imprArr(c,ai,bj);
+        delete a,b,c;
     }
 
     return 0 ;
