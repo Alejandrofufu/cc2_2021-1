@@ -3,7 +3,7 @@ using namespace std;
 
 int tam(char*arrT){
     int tam=0;
-    for(;*arrT;tam++,arrT++){}
+    for(;*arrT;tam++,arrT++){cout<<"\t"<<*arrT;}
     return tam;
 }
 
