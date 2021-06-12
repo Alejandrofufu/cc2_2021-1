@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Node{
+class Node {
 public:
     int data;
     Node* next;
@@ -9,7 +9,7 @@ public:
     Node(int);
     void print();
 };
-class List{
+class List {
 private:
     Node* m_head;
     Node* m_end;
@@ -23,105 +23,112 @@ public:
     void del(int);
 };
 
-Node::Node(){
+Node::Node() {
     data = NULL;
     next = NULL;
 }
-Node::Node(int d){
+Node::Node(int d) {
     data = d;
     next = NULL;
 }
 
-List::List(){
+List::List() {
     m_head = NULL;
     m_end = NULL;
 }
 
-List::~List(){//Liberamos toda la memoria utilizada
+List::~List() {//Liberamos toda la memoria utilizada
     Node* temp;
-    while(m_head){
+    while (m_head) {
         temp = m_head->next;
         delete m_head;
         m_head = temp;
     }
 }
 //funciones
-void Node::print(){
-    cout<<data<<",";
+void Node::print() {
+    cout << data << ",";
 }
 ////////
-void List::add_head(int d){//añadir al inicio
+void List::add_head(int d) {//añadir al inicio
     Node* new_node = new Node(d);
-    if(!m_head){//vacia
+    if (!m_head) {//vacia
         m_head = new_node;
         m_end = new_node;
-    }else{//con elementos
-        new_node -> next = m_head;// aputa al anterior pirmero
+    }
+    else {//con elementos
+        new_node->next = m_head;// aputa al anterior pirmero
         m_head = new_node;
     }
 }
-void List::add_end(int d){//añadir al final
+void List::add_end(int d) {//añadir al final
     Node* new_node = new Node(d);
-    if(!m_head){//vacia
+    if (!m_head) {//vacia
         m_head = new_node;
         m_end = new_node;
-    }else{//con elementos
-        m_end -> next = new_node;// apunta al nuevo nodo
+    }
+    else {//con elementos
+        m_end->next = new_node;// apunta al nuevo nodo
         m_end = new_node;
     }
 }
 
-void List::imprimir(){
-    cout<<"Head->";
-    for(Node* p = m_head;p;p = p->next)
+void List::imprimir() {
+    cout << "Head->";
+    for (Node* p = m_head; p; p = p->next)
         p->print();
-    cout <<"NULL"<<endl;
+    cout << "NULL" << endl;
 }
 
-Node* List::findAnt(int d){// buscar un elemento 
-    Node* ant=m_head;
+Node* List::findAnt(int d) {// buscar un elemento desde la segunda posicion 
+    Node* ant = m_head;
     Node* p = NULL;
-    for(p = m_head;p;p = p->next){
-        if(p->data != d)
+    for (p = m_head->next; p; p = p->next) {
+        if (p->data != d)
             ant = ant->next;
         break;
     }
-    if(!p)// no encontrado
+    if (!p)// no encontrado
         return NULL;
     return ant;
 }
 
-void List::del(int d){// eliminar un nodo
+void List::del(int d) {// eliminar un nodo
     Node* ant;
     Node* tmp;
-    if(m_head ->data == d){//Dato esta con el primer nodo
+    if (m_head->data == d) {//Dato esta con el primer nodo
         Node* tmp = m_head;
-        m_head = tmp -> next;
+        m_head = tmp->next;
         delete tmp;
-        if(m_head)// un elemento
+        if (m_head)// un elemento
             m_end = NULL;
-    }else{//el dato esa a partir del segundo elemento
-        if(m_head->next != NULL){
+    }
+    else {//el dato esa a partir del segundo elemento
+        if (m_head->next != NULL) {
             ant = findAnt(d);
-            if(ant == NULL)
-                cout<<"No encontrado";
-            else
-                tmp = ant;
-                ant = ant ->next;
+            if (ant == NULL)
+                cout << "No encontrado";
+            else{
+                tmp = ant->next;
+                ant ->next = ant->next->next;
                 delete tmp;
-        }else{cout<<"No encontrado";}
+            }
+        }
+        else { cout << "No encontrado"; }
     }
 }
 
 
-int main(){
+int main() {
     List l;
     l.add_head(8);
     l.imprimir();
     l.add_end(3);
     l.imprimir();
-    l.add_head(8);
+    l.add_head(5);
     l.imprimir();
-    
+    l.del(8);
+    l.imprimir();
+
     return 0;
 }
