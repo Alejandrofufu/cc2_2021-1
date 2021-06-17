@@ -21,6 +21,7 @@ public:
     void imprimir();
     Node* findAnt(int);
     void del(int);
+    void insert(int newNode, int Node);
 };
 
 Node::Node() {
@@ -83,10 +84,8 @@ void List::imprimir() {
 Node* List::findAnt(int d) {// buscar un elemento desde la segunda posicion 
     Node* ant = m_head;
     Node* p = NULL;
-    for (p = m_head->next; p; p = p->next) {
-        if (p->data != d)
-            ant = ant->next;
-        break;
+    for (p = m_head->next; p; p = p->next, ant = ant->next) {
+        if (p->data == d) break;
     }
     if (!p)// no encontrado
         return NULL;
@@ -105,19 +104,35 @@ void List::del(int d) {// eliminar un nodo
     }
     else {//el dato esa a partir del segundo elemento
         if (m_head->next != NULL) {
-            ant = findAnt(d);
+            ant = findAnt(d);//Dos o mas elementos 
             if (ant == NULL)
                 cout << "No encontrado";
-            else{
+            else {
                 tmp = ant->next;
-                ant ->next = ant->next->next;
+                ant->next = ant->next->next;
                 delete tmp;
+                if (ant->next == NULL) {//cuando borramos el ultimo nodo 
+                    m_end = ant;
+                }
             }
         }
-        else { cout << "No encontrado"; }
+        else { cout << "No encontrado"; }// no hay segundo elemento
     }
 }
+void List::insert(int newNode, int node) {
+    Node* ant = findAnt(node);
+    Node* tmp;
+    if (ant == NULL) {
+        add_head( newNode);
+    }
+    else {
+        Node* new_node = new Node(newNode);
+        tmp = ant->next;
+        ant->next = new_node;
+        new_node->next=tmp;
+    }
 
+}
 
 int main() {
     List l;
@@ -128,6 +143,11 @@ int main() {
     l.add_head(5);
     l.imprimir();
     l.del(8);
+    l.add_head(7);
+    l.add_head(6);
+    l.add_end(9);
+    l.imprimir();
+    l.insert(8, 9);
     l.imprimir();
 
     return 0;
